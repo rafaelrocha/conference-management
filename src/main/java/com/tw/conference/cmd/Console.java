@@ -14,7 +14,7 @@ import com.tw.conference.domain.Talk;
 public class Console {
 
 	public static void main(String args[]) {
-		String inputPath = "conference.input";
+		String inputPath = args[0];;
 		Scanner scanner = null;
 		
 		try {
@@ -61,7 +61,7 @@ public class Console {
 	public static void checkSessionsFilledOut(List<Session> sessions) {
 		for (Session session : sessions) {
 			if (!session.isFilledOutOk()) {
-				System.out.println("ATTENTION: This program is not able to fill the sessions with these taks following the schedules constraints. :(");
+				System.out.println("ATTENTION: This program is not able to fill up some sessions with these talks following the schedules constraints. :(");
 			}
 		}
 		System.out.println("ATTENTION: Printing the result despite wrongly");

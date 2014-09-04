@@ -14,11 +14,11 @@ apply plugin: 'eclipse'
 apply plugin: 'idea'
 
 // group is the groupId
-group = 'com.miguno.bootstrap.gtm'
+group = 'com.tw.conference'
 //the default artifactId is the project name, which is per default the directory name of the project
 version = '1.0.0-SNAPSHOT'
 
-description = """A bootstrap Java project with gradle, TestNG, Mockito, FEST-Assert 2 and Cobertura for Eclipse and Jenkins"""
+description = """Conference system to help admins to allocate talks in sessions."""
 
 sourceCompatibility = 1.6
 targetCompatibility = 1.6
@@ -59,7 +59,7 @@ test {
     suiteXmlBuilder().suite(name: 'gradle-testng-mockito-bootstrap', parallel: 'tests') {
       test (name : 'all-tests') {
         packages {
-          'package' (name: 'com.miguno.*')
+          'package' (name: 'com.tw.conference.*')
         }
       }
     }
@@ -84,4 +84,10 @@ task wrapper(type: Wrapper) {
   gradleVersion = '1.9'
 }
 
-mainClassName = "com.miguno.bootstrap.gtm.BobRoss"
+task(execConference, dependsOn: 'classes', type: JavaExec) {
+  main = 'com.tw.conference.cmd.Console'
+  classpath = sourceSets.main.runtimeClasspath
+  args "$input"
+}
+
+mainClassName = "com.tw.conference.cmd.Console"

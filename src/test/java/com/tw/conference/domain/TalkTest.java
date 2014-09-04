@@ -26,8 +26,4 @@ public class TalkTest {
 		assertThat(talk.getLength()).isEqualTo(5);
 	}
 	
-	@Test
-	public void shouldThrowBadFormatException() {
-		assertThat(false).isEqualTo(true);
-	}
 }
