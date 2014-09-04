@@ -84,10 +84,13 @@ task wrapper(type: Wrapper) {
   gradleVersion = '1.9'
 }
 
-task(execConference, dependsOn: 'classes', type: JavaExec) {
+task execConference(dependsOn: 'classes', type: JavaExec) {
   main = 'com.tw.conference.cmd.Console'
   classpath = sourceSets.main.runtimeClasspath
-  args "$input"
+  
+  if (project.hasProperty("input")){
+    args "$input"
+  }
 }
 
 mainClassName = "com.tw.conference.cmd.Console"
