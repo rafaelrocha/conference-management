@@ -1,7 +1,11 @@
 package com.tw.conference.domain;
 
+import static org.fest.assertions.api.Assertions.assertThat;
+
 import java.util.ArrayList;
 import java.util.List;
+
+import com.tw.conference.cmd.PrintHandler;
 
 public class Session {
 
@@ -37,8 +41,6 @@ public class Session {
 		return this.length; 
 	}
 	
-	
-	
 	public int getRemainingMinutes() {
 		return this.remainingMinutes;
 	}
@@ -48,4 +50,31 @@ public class Session {
 		this.remainingMinutes = this.remainingMinutes - talk.getLength();
 	}
 	
+	public void print(PrintHandler printHandler) {
+		int currentMinutes = 60 * this.beginAt; 
+				
+		for (Talk talk : talks) {
+			int talkLength = talk.getLength();
+			String talkLengthInText = "lightning";
+			
+			if (talkLength != 5) {
+				talkLengthInText = talkLength + "min";
+			}
+			
+			printHandler.print(
+				String.format("%s %s %s", 
+					convertMinutesToHourAndMinutes(currentMinutes), 
+					talk.getName(), 
+					talkLengthInText));
+			
+			currentMinutes += talk.getLength();
+		}
+	}
+	
+	private String convertMinutesToHourAndMinutes (int minutes) {
+		int hours = minutes / 60;
+		int convertedMinutes = minutes % 60;
+		String ampm = hours < 13 ? "AM" : "PM";
+		return String.format("%02d:%02d%s", hours, convertedMinutes, ampm);
+	}
 }
