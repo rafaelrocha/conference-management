@@ -41,7 +41,7 @@ public class ConferenceManagerTest {
 		Session trackTwoAfternoonSession = confManager.createSession(13, 16, 17);
 		
 		assertThat(trackOneMorningSession.getRemainingMinutes()).isEqualTo(0);
-		assertThat(trackTwoMorningSession.getRemainingMinutes()).isEqualTo(0);
+		assertThat(trackTwoMorningSession.getRemainingMinutes()).isEqualTo(10);
 		
 		assertThat(trackOneAfternoonSession.getRemainingMinutes()).isEqualTo(15);
 		assertThat(trackTwoAfternoonSession.getRemainingMinutes()).isEqualTo(30);

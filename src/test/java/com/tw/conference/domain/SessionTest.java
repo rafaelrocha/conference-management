@@ -1,12 +1,10 @@
 package com.tw.conference.domain;
 
 import static org.fest.assertions.api.Assertions.assertThat;
-import static org.mockito.Matchers.any;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 
-import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.List;
 

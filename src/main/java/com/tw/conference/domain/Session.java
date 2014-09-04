@@ -1,7 +1,5 @@
 package com.tw.conference.domain;
 
-import static org.fest.assertions.api.Assertions.assertThat;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -39,6 +37,15 @@ public class Session {
 	
 	public int getLength() {
 		return this.length; 
+	}
+	
+	public int getFlexibleDelta() {
+		return this.mustFinishUpTo - this.mightFinishAfter;
+	}
+	
+	public boolean isFilledOutOk() {
+		int flexibleDelta = (this.mustFinishUpTo - this.mightFinishAfter) * 60;
+		return this.remainingMinutes >= 0 && this.remainingMinutes <= flexibleDelta;
 	}
 	
 	public int getRemainingMinutes() {

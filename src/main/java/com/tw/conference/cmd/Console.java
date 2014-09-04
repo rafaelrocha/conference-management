@@ -3,6 +3,7 @@ package com.tw.conference.cmd;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 
@@ -33,6 +34,9 @@ public class Console {
 			Session trackOneAfternoonSession = confManager.createSession(13, 16, 17);
 			Session trackTwoAfternoonSession = confManager.createSession(13, 16, 17);
 			
+			List<Session> sessions = Arrays.asList(trackOneMorningSession, trackTwoMorningSession, trackOneAfternoonSession, trackTwoAfternoonSession);
+			checkSessionsFilledOut(sessions);
+			
 			
 			PrintHandler printConsole = new PrintConsole();
 			
@@ -52,5 +56,14 @@ public class Console {
 				scanner.close();
 			}
 		}
+	}
+	
+	public static void checkSessionsFilledOut(List<Session> sessions) {
+		for (Session session : sessions) {
+			if (!session.isFilledOutOk()) {
+				System.out.println("ATTENTION: This program is not able to fill the sessions with these taks following the schedules constraints. :(");
+			}
+		}
+		System.out.println("ATTENTION: Printing the result despite wrongly");
 	}
 }
